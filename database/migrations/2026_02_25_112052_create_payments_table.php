@@ -16,6 +16,7 @@ return new class extends Migration
             $table->decimal('manton');
             $table->string('statue');
             $table->foreignId('depense_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

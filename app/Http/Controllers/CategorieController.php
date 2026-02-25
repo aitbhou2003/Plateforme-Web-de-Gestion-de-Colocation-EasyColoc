@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Collocation;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 
-class CollocationController extends Controller
+class CategorieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,6 @@ class CollocationController extends Controller
     public function index()
     {
         //
-        return view('creat-collocation');
     }
 
     /**
@@ -35,7 +34,7 @@ class CollocationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Collocation $collocation)
+    public function show(Categorie $categorie)
     {
         //
     }
@@ -43,7 +42,7 @@ class CollocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Collocation $collocation)
+    public function edit(Categorie $categorie)
     {
         //
     }
@@ -51,7 +50,7 @@ class CollocationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Collocation $collocation)
+    public function update(Request $request, Categorie $categorie)
     {
         //
     }
@@ -59,7 +58,7 @@ class CollocationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Collocation $collocation)
+    public function destroy(Categorie $categorie)
     {
         //
     }

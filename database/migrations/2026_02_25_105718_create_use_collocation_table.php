@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_collocation', function (Blueprint $table) {
             $table->id();
-            $table->string('role');
+            $table->boolean('is_owner')->default(false);
             $table->string('statue');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('collocation_id')->constrained();
