@@ -10,24 +10,28 @@ class Collocation extends Model
 {
     //
     protected $fillable = [
-        'statue',
+        'status',
         'description',
         'titre'
     ];
 
-    public function user(): BelongsToMany
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)
         ->withTimestamps()
-        ->withPivot(['is_owner']);
+        ->withPivot(['is_owner', 'status']);
     }
 
-    public function categorie(): HasMany
+    public function categories(): HasMany
     {
         return $this->hasMany(Categorie::class);
     }
 
-    public function depense(): HasMany
+    public function owner(){
+        return $this->users()->wherePivot('is_owner',true)->first();
+    }
+
+    public function depenses(): HasMany
     {
         return $this->hasMany(Depense::class);
     }
