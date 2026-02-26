@@ -9,10 +9,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Collocation extends Model
 {
     //
+    protected $fillable = [
+        'statue',
+        'description',
+        'titre'
+    ];
 
     public function user(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)
+        ->withTimestamps()
+        ->withPivot(['is_owner']);
     }
 
     public function categorie(): HasMany

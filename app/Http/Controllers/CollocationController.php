@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CollocationRequest;
 use App\Models\Collocation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CollocationController extends Controller
 {
@@ -13,7 +16,7 @@ class CollocationController extends Controller
     public function index()
     {
         //
-        return view('creat-collocation');
+        
     }
 
     /**
@@ -22,14 +25,23 @@ class CollocationController extends Controller
     public function create()
     {
         //
+        return view('collocation.creat-collocation');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CollocationRequest $request)
     {
-        //
+        $validate = $request->validated();
+        Collocation::create([
+            'titre' => $validate['titre'],
+            'description' => $validate['description']
+        ])->user()->attach(Auth::user(), ['is_owner' => 1]);
+
+        return Redirect::route('collocation.index');
+        
+
     }
 
     /**

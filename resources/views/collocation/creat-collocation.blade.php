@@ -296,22 +296,19 @@
 
         <!-- Form Container -->
         <div class="glass-card" style="max-width: 900px;">
-            <form action="" method="POST" style="display: grid; gap: 1.5rem;">
+            <form action="{{ route('collocation.store') }}" method="POST" style="display: grid; gap: 1.5rem;">
                 @csrf
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                     <div>
-                        <label class="form-label">Nom de la colocation</label>
-                        <input type="text" name="name" class="form-input"
+                        <label class="form-label">Titre de la colocation</label>
+                        <input type="text" name="titre" class="form-input"
                             placeholder="Ex: Appartement Paris 11e" required>
                     </div>
-                    <div>
-                        <label class="form-label">Loyer mensuel (€)</label>
-                        <input type="number" name="rent" class="form-input" placeholder="Ex: 1200">
-                    </div>
+                    
                 </div>
 
-                <div>
+                {{-- <div>
                     <label class="form-label">Adresse complete</label>
                     <select name="address" class="form-input" required>
                         <option value="" disabled selected>Selectionnez une adresse</option>
@@ -323,7 +320,7 @@
                             Aix-en-Provence</option>
                         <option value="other">Autre (Non listee)</option>
                     </select>
-                </div>  
+                </div>   --}}
 
                 <div>
                     <label class="form-label">Informations supplementaires</label>
