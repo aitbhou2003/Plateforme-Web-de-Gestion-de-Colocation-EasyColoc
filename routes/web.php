@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CollocationController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Collocation;
@@ -19,6 +20,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
-Route::resource('collocation',CollocationController::class);
+Route::resource('collocation', CollocationController::class);
+
+Route::get('/categories', [CategorieController::class, 'index'])
+    ->name('categories.index');
+Route::get('/categories/create',[CategorieController::class, 'create'])
+->name('categories.create');

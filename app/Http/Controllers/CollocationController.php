@@ -35,7 +35,7 @@ class CollocationController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    { 
         //
         if (!Auth::user()->check_collocation()) {
             return redirect()->route('collocation.index')
@@ -63,7 +63,7 @@ class CollocationController extends Controller
             'status' => true
         ]);
 
-        return Redirect::route('collocation.index')->with('success', 'Collocation créée avec succès !');
+        return Redirect::route('collocation.index') ->with('success', 'Collocation créée avec succès !');
     }
 
     /**

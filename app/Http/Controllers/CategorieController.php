@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategorieController extends Controller
 {
@@ -13,6 +14,20 @@ class CategorieController extends Controller
     public function index()
     {
         //
+
+        $user = Auth::user();
+        if ($user->check_collocation()) {
+            return redirect()->route('collocation.create');
+        }
+
+        $collocation = $user->collocations()->first();
+        $isOwner = $user->isOwnerOf($collocation);
+        $categories = $collocation->categories()->get();
+        return view('categories.index', compact(
+            'collocation',
+            'categories',
+            'isOwner'
+        ));
     }
 
     /**
@@ -21,6 +36,16 @@ class CategorieController extends Controller
     public function create()
     {
         //
+        $user = Auth::user();
+        if($user->check_collocation()){
+            return redirect()->route('collocation.create');
+        }
+        $collocation = $user->collocations()->first();
+        if(!$user->isOwnerOf($collocation)){
+            abort(403,"seulement l'owner est le droit de cree une categorie");
+        }
+
+        return view('categories.create',compact('collocation'));
     }
 
     /**
