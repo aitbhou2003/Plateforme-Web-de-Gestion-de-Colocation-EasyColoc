@@ -131,6 +131,7 @@
 <body>
     <!-- SIDEBAR -->
     <aside class="sidebar">
+        <!-- Logo -->
         <div style="padding: 1.5rem; border-bottom: 1px solid var(--border);">
             <a href="{{ route('dashboard') }}"
                 style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
@@ -145,8 +146,12 @@
                 <span class="font-display text-xl font-bold text-white">EasyColoc</span>
             </a>
         </div>
+
+        <!-- Navigation Links -->
         <nav style="flex: 1; padding: 1rem; overflow-y: auto;">
-            <a href="{{ route('dashboard') }}" class="nav-item">
+
+            <!-- 1. Dashboard -->
+            <a href="{{ route('dashboard') }}" class="nav-item active">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
@@ -154,17 +159,23 @@
                 <span>Dashboard</span>
             </a>
 
+            <!-- 2. Nouvelle Colocation (Accent Color) -->
             @if (Auth::user()->check_collocation())
-                <a href="{{ route('collocation.create') }}" class="nav-item" style="color: var(--accent);">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="{{ route('collocation.create') }}" class="nav-item" style="color: var(--accent);"><svg
+                        class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                    </svg>
-                    <span>Nouvelle Colocation</span>
-                </a>
+                    </svg><span>Nouvelle Colocation</span></a>
             @endif
+            <a href="{{ route('categories.index') }}" class="nav-item">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                </svg>
+                <span>Catégories</span>
+            </a>
 
             <div style="margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;">
-                <a href="{{ route('collocation.index') }}" class="nav-item active">
+                <a href="{{ route('collocation.index') }}" class="nav-item">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -176,7 +187,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                     </svg>
-                    <span>Dépenses</span>
+                    <span>Depenses</span>
                 </a>
                 <a href="#" class="nav-item">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -186,9 +197,23 @@
                     <span>Balances</span>
                 </a>
             </div>
+
+            <!-- 3. Admin Global Section -->
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                <p class="text-xs font-medium uppercase tracking-wider mb-2 px-3" style="color: var(--muted);">Admin</p>
+                <a href="#" class="nav-item">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Admin Global</span>
+                </a>
+            </div>
         </nav>
 
-        <!-- User Section -->
+        <!-- User Info, Profile & Logout -->
         <div style="padding: 1rem; border-top: 1px solid var(--border); background: rgba(0,0,0,0.1);">
             <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
                 <div
@@ -198,17 +223,11 @@
                 <div style="flex: 1;">
                     <p class="font-medium text-white text-sm">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                     </p>
-                    <p class="text-xs" style="color: var(--muted);">
-                        @if (isset($collocation) && Auth::user()->isOwnerOf($collocation))
-                            Owner
-                        @elseif(isset($collocation))
-                            Membre
-                        @else
-                            Pas de collocation
-                        @endif
-                    </p>
+                    <p class="text-xs" style="color: var(--muted);">Owner</p>
                 </div>
             </div>
+
+            <!-- Profile Link -->
             <a href="{{ route('profile.edit') }}" class="profile-btn">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -216,6 +235,8 @@
                 </svg>
                 <span>Profile</span>
             </a>
+
+            <!-- Logout Form -->
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="profile-btn" style="color: #ef4444;">
@@ -231,7 +252,7 @@
 
     <!-- Main Content -->
     <main class="main-content">
-=        @if (session('success'))
+        = @if (session('success'))
             <div
                 style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; color: #10b981; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
                 {{ session('success') }}

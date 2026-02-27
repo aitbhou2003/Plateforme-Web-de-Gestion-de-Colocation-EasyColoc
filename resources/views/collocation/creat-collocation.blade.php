@@ -194,7 +194,7 @@
         <nav style="flex: 1; padding: 1rem; overflow-y: auto;">
 
             <!-- 1. Dashboard -->
-            <a href="{{ route('dashboard') }}" class="nav-item">
+            <a href="{{ route('dashboard') }}" class="nav-item active">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
@@ -202,13 +202,20 @@
                 <span>Dashboard</span>
             </a>
 
-            <!-- 2. Nouvelle Colocation (Active) -->
-             @if (Auth::user()->check_collocation())
-                <a href="{{ route('collocation.create') }}" class="nav-item" style="color: var(--accent);"><svg class="w-5 h-5" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24">
+            <!-- 2. Nouvelle Colocation (Accent Color) -->
+            @if (Auth::user()->check_collocation())
+                <a href="{{ route('collocation.create') }}" class="nav-item" style="color: var(--accent);"><svg
+                        class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg><span>Nouvelle Colocation</span></a>
             @endif
+            <a href="{{ route('categories.index') }}" class="nav-item">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                </svg>
+                <span>Catégories</span>
+            </a>
 
             <div style="margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem;">
                 <a href="{{ route('collocation.index') }}" class="nav-item">
@@ -234,7 +241,7 @@
                 </a>
             </div>
 
-            <!-- Admin Section -->
+            <!-- 3. Admin Global Section -->
             <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
                 <p class="text-xs font-medium uppercase tracking-wider mb-2 px-3" style="color: var(--muted);">Admin</p>
                 <a href="#" class="nav-item">
@@ -305,7 +312,7 @@
                         <input type="text" name="titre" class="form-input"
                             placeholder="Ex: Appartement Paris 11e" required>
                     </div>
-                    
+
                 </div>
 
                 {{-- <div>
