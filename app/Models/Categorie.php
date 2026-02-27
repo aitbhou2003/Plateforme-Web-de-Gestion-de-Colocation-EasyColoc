@@ -10,6 +10,11 @@ class Categorie extends Model
 {
     //
 
+    protected $fillable = [
+        'name',
+        'collocation_id'
+    ];
+
     public function collocation(): BelongsTo
     {
         return $this->belongsTo(Collocation::class);

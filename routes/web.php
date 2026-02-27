@@ -26,5 +26,10 @@ Route::resource('collocation', CollocationController::class);
 
 Route::get('/categories', [CategorieController::class, 'index'])
     ->name('categories.index');
-Route::get('/categories/create',[CategorieController::class, 'create'])
-->name('categories.create');
+Route::get('/categories/create', [CategorieController::class, 'create'])
+    ->name('categories.create');
+
+Route::post('categories', [CategorieController::class, 'store'])
+->name('categories.store');
+Route::delete('categories/{categorie}',[CategorieController::class,'destroy'])
+->name('categories.destroy');

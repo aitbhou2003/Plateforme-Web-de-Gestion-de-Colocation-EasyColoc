@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategorieRequest;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,23 +38,37 @@ class CategorieController extends Controller
     {
         //
         $user = Auth::user();
-        if($user->check_collocation()){
+        if ($user->check_collocation()) {
             return redirect()->route('collocation.create');
         }
         $collocation = $user->collocations()->first();
-        if(!$user->isOwnerOf($collocation)){
-            abort(403,"seulement l'owner est le droit de cree une categorie");
+        if (!$user->isOwnerOf($collocation)) {
+            abort(403, "seulement l'owner est le droit de cree une categorie");
         }
 
-        return view('categories.create',compact('collocation'));
+        return view('categories.create', compact('collocation'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategorieRequest $request)
     {
-        //
+        $user = Auth::user();
+        if ($user->check_collocation()) {
+            return redirect()->route('collocation.create');
+        }
+        $collocation = $user->collocations()->first();
+        if (!$user->isOwnerOf($collocation)) {
+            abort(403, "seulement l'owner est le droit de cree une categorie");
+        }
+        $validate = $request->validated();
+        Categorie::create([
+            'name' => $validate['name'],
+            'collocation_id' => $collocation->id
+        ]);
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -86,5 +101,13 @@ class CategorieController extends Controller
     public function destroy(Categorie $categorie)
     {
         //
+        $user = Auth::user();
+        if($categorie->depenses()->count() > 0){
+            abort(403,"Tu n'a pas le droi de suprimer une categories qui exist d'ans use depense");
+        }
+
+        $categorie->delete();
+        return redirect()->route('categories.index');
+
     }
 }

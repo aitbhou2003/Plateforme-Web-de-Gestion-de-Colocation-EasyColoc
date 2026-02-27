@@ -133,7 +133,7 @@
             <a href="{{ route('dashboard') }}" class="nav-item">Dashboard</a>
             <a href="{{ route('collocation.index') }}" class="nav-item">Ma Colocation</a>
             <a href="{{ route('categories.index') }}" class="nav-item">Catégories</a>
-            <a href="{{ route('depenses.index') }}" class="nav-item">Dépenses</a>
+            {{-- <a href="{{ route('depenses.index') }}" class="nav-item">Dépenses</a> --}}
         </nav>
     </aside>
 
@@ -154,16 +154,6 @@
                     @error('name')
                         <p style="color: #ef4444; font-size: 0.875rem; margin-top: 0.5rem;">{{ $message }}</p>
                     @enderror
-                </div>
-
-                <div
-                    style="background: rgba(59, 130, 246, 0.1); border: 1px solid #3b82f6; color: #3b82f6; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; font-size: 0.875rem;">
-                    <strong>Exemples de catégories :</strong><br>
-                    • Courses (alimentation, ménage)<br>
-                    • Loyer & Charges (loyer, électricité, eau)<br>
-                    • Internet & Télécom (box internet, téléphones)<br>
-                    • Loisirs (sorties, abonnements streaming)<br>
-                    • Transport (essence, transports en commun)
                 </div>
 
                 <div style="display: flex; gap: 1rem;">

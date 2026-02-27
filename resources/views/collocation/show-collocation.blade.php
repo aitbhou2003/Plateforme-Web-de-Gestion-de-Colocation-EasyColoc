@@ -252,7 +252,7 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        = @if (session('success'))
+        @if (session('success'))
             <div
                 style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; color: #10b981; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
                 {{ session('success') }}
