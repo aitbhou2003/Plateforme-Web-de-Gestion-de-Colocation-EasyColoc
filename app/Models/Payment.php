@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Payment extends Model
 {
     //
+     protected $fillable = [
+        'montant',
+        'status',
+        'depense_id',
+        'user_id'
+    ];
+    
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

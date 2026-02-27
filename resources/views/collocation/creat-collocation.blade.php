@@ -204,7 +204,7 @@
 
             <!-- 2. Nouvelle Colocation (Active) -->
              @if (Auth::user()->check_collocation())
-                <a href="#" class="nav-item" style="color: var(--accent);"><svg class="w-5 h-5" fill="none"
+                <a href="{{ route('collocation.create') }}" class="nav-item" style="color: var(--accent);"><svg class="w-5 h-5" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg><span>Nouvelle Colocation</span></a>

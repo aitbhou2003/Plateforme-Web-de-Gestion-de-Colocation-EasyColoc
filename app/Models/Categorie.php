@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Categorie extends Model
 {
@@ -14,9 +15,9 @@ class Categorie extends Model
         return $this->belongsTo(Collocation::class);
     }
 
-    public function depense(): BelongsTo
+    public function depenses(): HasMany
     {
-        return $this->belongsTo(Depense::class);
+        return $this->hasMany(Depense::class);
     }
 
 

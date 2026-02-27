@@ -16,14 +16,13 @@ class CollocationController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if ($user->collocations->isEmpty()) {
+        if ($user->check_collocation()) {
             return redirect()->route('collocation.create')
                 ->with('message', "tu aucuns de collocation cree une");
         }
 
         $collocation = $user->collocations()
             ->with(['users' => function ($query) {
-                // Eager load user details if needed
                 $query->select('users.id', 'firstname', 'lastname', 'email');
             }])
             ->first();
@@ -53,12 +52,18 @@ class CollocationController extends Controller
     public function store(CollocationRequest $request)
     {
         $validate = $request->validated();
-        Collocation::create([
+        $collocation = Collocation::create([
             'titre' => $validate['titre'],
-            'description' => $validate['description']
-        ])->user()->attach(Auth::user(), ['is_owner' => 1]);
+            'description' => $validate['description'],
+            'status' => true
+        ]);
 
-        return Redirect::route('collocation.index');
+        $collocation->users()->attach(Auth::id(),[
+            'is_owner' => true,
+            'status' => true
+        ]);
+
+        return Redirect::route('collocation.index')->with('success', 'Collocation créée avec succès !');
     }
 
     /**

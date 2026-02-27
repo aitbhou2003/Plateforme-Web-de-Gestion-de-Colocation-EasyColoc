@@ -80,7 +80,7 @@ class User extends Authenticatable
 
     public function check_collocation()
     {
-        return $this->collocations->exists();
+        return $this->collocations->isEmpty();
     }
 
     public function isAdmin(): bool

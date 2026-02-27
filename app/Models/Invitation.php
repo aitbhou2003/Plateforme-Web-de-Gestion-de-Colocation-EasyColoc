@@ -7,11 +7,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Invitation extends Model
 {
-
-    //
+    protected $fillable = [
+        'message',
+        'email',
+        'token',
+        'user_id'
+    ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
+
+
 }
