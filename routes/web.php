@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CollocationController;
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Collocation;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,11 @@ Route::get('/categories/create', [CategorieController::class, 'create'])
     ->name('categories.create');
 
 Route::post('categories', [CategorieController::class, 'store'])
-->name('categories.store');
-Route::delete('categories/{categorie}',[CategorieController::class,'destroy'])
-->name('categories.destroy');
+    ->name('categories.store');
+Route::delete('categories/{categorie}', [CategorieController::class, 'destroy'])
+    ->name('categories.destroy');
+
+Route::get('/invitations/create', [InvitationController::class, 'create'])
+->name('invitations.create');
+Route::post('/invitations', [InvitationController::class, 'store'])
+->name('invitations.create');

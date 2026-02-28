@@ -20,6 +20,7 @@ class InvitationController extends Controller
      */
     public function create()
     {
+        return view('invitations.create');
         //
     }
 
