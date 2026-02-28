@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InvitationRequest;
+use App\Mail\InvitationMail;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class InvitationController extends Controller
 {
@@ -27,9 +32,23 @@ class InvitationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(InvitationRequest $request)
     {
         //
+        $validate = $request->validated();
+        $token = Str::random(32);
+        Invitation::create([
+            'email' => $validate['email'],
+            'token' => $token,
+            'user_id' => Auth::id()
+        ]);
+
+        Mail::to($validate['email'])->send(new InvitationMail(
+            Auth::user()->firstname,
+            $token
+        ));
+
+        return redirect()->route("collocation.index");
     }
 
     /**

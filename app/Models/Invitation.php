@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Invitation extends Model
 {
     protected $fillable = [
-        'message',
         'email',
         'token',
         'user_id'

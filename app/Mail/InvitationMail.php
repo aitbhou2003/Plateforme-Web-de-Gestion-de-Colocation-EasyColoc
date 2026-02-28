@@ -19,9 +19,10 @@ class InvitationMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(Invitation $invitation)
+    public function __construct($owner,$token)
     {
-        
+        $this->owner = $owner;
+        $this->token = $token;
     
         //
     }

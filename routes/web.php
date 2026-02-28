@@ -38,4 +38,4 @@ Route::delete('categories/{categorie}', [CategorieController::class, 'destroy'])
 Route::get('/invitations/create', [InvitationController::class, 'create'])
 ->name('invitations.create');
 Route::post('/invitations', [InvitationController::class, 'store'])
-->name('invitations.create');
+->name('invitations.store');

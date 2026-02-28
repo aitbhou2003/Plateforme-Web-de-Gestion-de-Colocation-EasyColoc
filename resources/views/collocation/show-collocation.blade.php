@@ -305,9 +305,9 @@
         <!-- Members Grid -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <h3 class="font-display text-lg font-semibold">Membres ({{ $collocation->users->count() }})</h3>
-            <button class="btn-primary" style="font-size: 0.875rem; padding: 0.5rem 1rem;">
+            <a href="{{ route('invitations.create') }}" class="btn-primary" style="font-size: 0.875rem; padding: 0.5rem 1rem;">
                 + Inviter
-            </button>
+            </a>
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
